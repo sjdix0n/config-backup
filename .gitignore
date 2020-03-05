@@ -1,0 +1,6 @@
+.DS_Store
+*.retry
+logs/*
+host_vars/*.swp
+*.swp
+

@@ -1,0 +1,19 @@
+---
+- name: "Get Junos OS configuration."
+  hosts: lab
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: create directory
+      file:
+        path: "{{ playbook_dir}}/configs/{{ lookup('pipe','date +%Y%m%d') }}"
+        state: directory 
+    - name: "Get configuration in XML format"
+      juniper_junos_config:
+        retrieve: "committed"
+        dest_dir: "{{ playbook_dir}}/configs/{{ lookup('pipe','date +%Y%m%d') }}" 
+      
+    
